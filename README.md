@@ -1,5 +1,7 @@
 # <img src="./docs/cover.png" alt="React Native SQLite 2" aria-label="React Native SQLite 2" />
 
+Sure, it is forked from react-native-sqlite-2 indeed, this repo just for quickly customizing on some features
+
 SQLite3 Native Plugin for React Native for Android, iOS, Windows and macOS.
 This plugin provides a [WebSQL](http://www.w3.org/TR/webdatabase/)-compatible API to store data in a react native app, by using a SQLite database on the native side.
 

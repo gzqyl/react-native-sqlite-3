@@ -14,7 +14,7 @@
     "ios",
     "windows",
     "cpp",
-    "react-native-sqlite-2.podspec",
+    "react-native-sqlite-3.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -39,8 +39,8 @@
     "pouchdb",
     "sqlite"
   ],
-  "repository": "https://github.com/craftzdog/react-native-sqlite-2",
-  "author": "Takuya Matsuyama <hi@craftz.dog> (https://github.com/craftzdog)",
+  "repository": "https://github.com/gzqyl/react-native-sqlite-3",
+  "author": "Takuya Matsuyama <hi@craftz.dog> (https://github.com/craftzdog) Allen <allen.gzqyl@gmail.com> (https://github.com/gzqyl)",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/craftzdog/react-native-sqlite-2/issues"

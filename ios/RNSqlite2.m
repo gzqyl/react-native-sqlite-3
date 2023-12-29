@@ -30,17 +30,16 @@ RCT_EXPORT_MODULE()
   cachedDatabases = [NSMutableDictionary dictionaryWithCapacity:0];
   dbQueues = [NSMutableDictionary dictionaryWithCapacity:0];
   NSString *dbDir = [self getDatabaseDir];
-
-  // create "NoCloud" if it doesn't exist
+  
   [[NSFileManager defaultManager] createDirectoryAtPath: dbDir
-                            withIntermediateDirectories: NO
+                            withIntermediateDirectories: YES
                                              attributes: nil
                                                   error: nil];
-  // make it non-syncable to iCloud
-  NSURL *url = [ NSURL fileURLWithPath: dbDir];
-  [url setResourceValue: [NSNumber numberWithBool: YES]
-                 forKey: NSURLIsExcludedFromBackupKey
-                  error: nil];
+  // well, we do not need to exlude it, indeed, we hope that it could be backed up...
+  // NSURL *url = [ NSURL fileURLWithPath: dbDir];
+  // [url setResourceValue: [NSNumber numberWithBool: YES]
+  //                forKey: NSURLIsExcludedFromBackupKey
+  //                 error: nil];
 }
 
 - (dispatch_queue_t)getDatabaseQueue:(NSString *)dbName {
@@ -53,17 +52,14 @@ RCT_EXPORT_MODULE()
 }
 
 -(NSString*) getDatabaseDir {
-  NSString *libDir = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
-  return [libDir stringByAppendingPathComponent:@"NoCloud"];
+  //so, we just keep it at documents...
+  NSString *libDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES) objectAtIndex: 0];
+  //a dir that explicity says that it is sqlite
+  return [libDir stringByAppendingPathComponent:@"SQLiteDB3"];
 }
 
 -(id) getPathForDB:(NSString *)dbName {
-  // special case for in-memory databases
-  if ([dbName isEqualToString:@":memory:"]) {
-    return dbName;
-  }
-  // otherwise use this location, which matches the old SQLite Plugin behavior
-  // and ensures no iCloud backup, which is apparently disallowed for SQLite dbs
+  // no in-memory databases, and it should be forbidden
   return [[self getDatabaseDir] stringByAppendingPathComponent: dbName];
 }
 
